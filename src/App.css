@@ -1,30 +1,38 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
+.patrick-hand-regular {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 
 @theme {
+  /* Font variables */
+  --font-patrick-hand: "Patrick Hand", cursive;
+  --font-sans: system-ui, -apple-system, sans-serif;
+  
   /* Custom dark color palette */
   --dark-background-primary: #121417;
-  --dark-primary-button: ##3d99f5;
+  --dark-primary-button: #3d99f5;
   --color-cta-start: #33bc82;
   --color-cta-end: #00a05c;
   --dark-text-primary: #ffffff;
-  --dark-text-secondary: ##9cabba;
+  --dark-text-secondary: #9cabba;
   --color-text-tertiary: #5e5e5e;
   --color-text-inverse: #ffffff;
   --color-footer-copyright: #1e2833;
   --color-contact-accent: #00a05c;
   
-  /* CTA gradient helper */
-  --gradient-cta: linear-gradient(135deg, var(--color-cta-start), var(--color-cta-end));
+  /* Light theme colors */
+  --light-background-primary: #ffffff;
+  --light-text-primary: #121417;
+  --light-text-secondary: #61758a;
+  --light-background-secondary: #f0f2f5;
+}
 
-
-  --light-background-primary: ##ffffff;
-  --light-text-primary: ##121417;
-  --light-text-secondary: ##61758a;
-  --light-background-secondary: ##f0f2f5;
-  
-
-
-
-
+/* Regular CSS variables for complex values that don't need utility classes */
+:root {
+  --gradient-cta: linear-gradient(135deg, #33bc82, #00a05c);
+  font-family: var(--font-patrick-hand);
 }
