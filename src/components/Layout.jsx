@@ -6,7 +6,7 @@ import Footer from './Footer';
     return (
         <div className='h-svh w-full dark:bg-(--dark-background-primary) bg-(--light-background-primary)'>
             <Header />
-            <main>
+            <main className='pt-40'>
                 {children}
             </main>
             <Footer />

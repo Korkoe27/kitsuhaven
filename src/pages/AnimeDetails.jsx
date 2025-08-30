@@ -1,6 +1,6 @@
 import React from 'react'
 import actor from '/images/card2.jpg'
-import animeBg from '/images/anime-moon-landscape.jpg'
+// import animeBg from '/images/anime-moon-landscape.jpg'
 // import Header from '../components/Header'
 import { Link } from 'react-router-dom'
 
@@ -19,42 +19,55 @@ function AnimeDetails() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <div className="relative h-96 mb-8">
-        <div className="absolute inset-0">
-          <img
-            src={animeBg}
-            alt="Card"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/60 to-transparent" />
-        </div>
-        
-        <div className="relative z-10 container mx-auto px-4 h-full flex items-end pb-8">
-          <Link
-            to="/search"
-            className="absolute top-8 left-4 flex items-center space-x-2 text-white bg-black/50 hover:bg-black/70 px-3 py-2 rounded-lg transition-colors"
-          >
-            {/* <ArrowLeft className="w-4 h-4" /> */}
-            <span>Back</span>
-          </Link>
-        </div>
-      </div>
+
 
       <div className="container mx-auto px-4 pb-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="flex">
           {/* Movie Poster and Actions */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-8">
+          <div className="flex-col flex text-white">
+            <h4 className="">Episode List:</h4>
+            <div className="flex">
+              <span className="">EPS: 1-20</span>
+              <input type="search" className="" placeholder='Enter episode number' />
+            </div>
+            <div className="flex flex-wrap gap-4">
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+              <span className="border-1 p-2 w-fit">001</span>
+            </div>
+          </div>
+
+          <section className="w-full bg-red-500">
+            <h2 className="text-white">Episode 1: Say my Name</h2>
+              <img
+                src={actor}
+                // src={movie.poster}
+                alt='Episode thumbnail'
+                // alt={movie.title}
+                className="w-full max-w-sm rounded-lg shadow-2xl"
+              />
+              
+
+          </section>
+
+
+          <div className="">
+            <div className="">
               <img
                 src={actor}
                 // src={movie.poster}
                 alt='Test'
                 // alt={movie.title}
-                className="w-full max-w-sm mx-auto rounded-lg shadow-2xl mb-6"
+                className="w-full max-w-sm rounded-lg shadow-2xl mb-6"
               />
               
-              <div className="flex flex-col space-y-3 max-w-sm mx-auto">
+              <div className="flex flex-col space-y-3 max-w-sm">
                 <button className="flex items-center justify-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors">
                   {/* <Play className="w-5 h-5" /> */}
                   <span>Watch Trailer</span>
@@ -73,9 +86,7 @@ function AnimeDetails() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Movie Details */}
+                      {/* Movie Details */}
           <div className="lg:col-span-2">
             <div className="mb-6">
               <h1 className="text-4xl font-bold text-white mb-4">One Piece</h1>
@@ -216,7 +227,10 @@ function AnimeDetails() {
                 </div>
               </div>
             </div>
+            
           </div>
+          </div>
+
         </div>
       </div>
     </div>

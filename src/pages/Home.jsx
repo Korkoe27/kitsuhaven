@@ -4,7 +4,7 @@ import AnimeCard from "../components/AnimeCard";
 
 function Home() {
   return (
-    <div className="flex-col flex h-full w-full">
+    <div className="flex-col dark:bg-(--dark-background-primary) bg:(--light-background-primary) flex h-full w-full">
       <div className="h-screen w-full relative">
         <div className="h-screen w-full ">
           <img src={homeBg} alt="" className="h-full object-cover w-full" />
