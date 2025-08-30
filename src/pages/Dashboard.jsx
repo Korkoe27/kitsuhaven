@@ -36,9 +36,12 @@ const Dashboard = () => {
           <p className="flex flex-wrap items-center justify-center gap-2 text-sm text-gray-400">
             Top Searches: Action, Adventure, Comedy, Drama, Fantasy, Horror, Romance, Sci-Fi, Slice of Life
           </p>
-          <Link to={`home`} className='"inline-flex items-center text-center justify-center bg-gradient-to-r  from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 w-fit text-white text-lg font-semibold px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105'>
+          <Link to={`home`} className='inline-flex items-center text-center justify-center bg-purple-600 bg-gradient-to-r hover:from-purple-700 hover:to-pink-700 w-fit text-white text-lg font-semibold px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105'>
             Explore Anime
           </Link>
+          {/* <Link to={`home`} className='"inline-flex items-center text-center justify-center bg-gradient-to-r  from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 w-fit text-white text-lg font-semibold px-8 py-4 rounded-lg transition-all duration-200 transform hover:scale-105'>
+            Explore Anime
+          </Link> */}
         </aside>
       </div>
     </main>

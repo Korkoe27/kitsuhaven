@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+
 
 .patrick-hand-regular {
   font-family: "Patrick Hand", cursive;
@@ -12,8 +14,10 @@
   --font-patrick-hand: "Patrick Hand", cursive;
   --font-sans: system-ui, -apple-system, sans-serif;
   
+  --font-sawarabi-gothi: "Sawarabi Gothic", sans-serif;
+  
   /* Custom dark color palette */
-  --dark-background-primary: #121417;
+  --dark-background-primary: #101828;
   --dark-primary-button: #3d99f5;
   --color-cta-start: #33bc82;
   --color-cta-end: #00a05c;

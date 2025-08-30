@@ -4,7 +4,7 @@ import Footer from './Footer';
 
     const Layout = ({children}) => {
     return (
-        <div>
+        <div className='h-svh w-full dark:bg-(--dark-background-primary) bg-(--light-background-primary)'>
             <Header />
             <main>
                 {children}
