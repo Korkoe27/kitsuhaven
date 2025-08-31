@@ -7,7 +7,7 @@ function AnimeCard() {
  <Link 
     //   to={`/movie/${movie.id}`}
     to={'/anime'}
-      className="group block overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105"
+      className="group block overflow-hidden rounded-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
     >
       <div className="relative">
         <img

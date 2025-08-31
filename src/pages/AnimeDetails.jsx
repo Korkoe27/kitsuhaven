@@ -22,13 +22,13 @@ function AnimeDetails() {
 
 
       <div className="container mx-auto px-4 pb-12">
-        <div className="flex">
+        <div className="flex justify-between bg-green-500" >
           {/* Movie Poster and Actions */}
           <div className="flex-col flex text-white">
             <h4 className="">Episode List:</h4>
             <div className="flex">
               <span className="">EPS: 1-20</span>
-              <input type="search" className="" placeholder='Enter episode number' />
+              <input type="search" className="border rounded-lg p-2" placeholder='Enter episode number' />
             </div>
             <div className="flex flex-wrap gap-4">
               <span className="border-1 p-2 w-fit">001</span>
@@ -43,7 +43,7 @@ function AnimeDetails() {
             </div>
           </div>
 
-          <section className="w-full bg-red-500">
+          <section className="w-full bg-red-500 px-5">
             <h2 className="text-white">Episode 1: Say my Name</h2>
               <img
                 src={actor}
@@ -52,12 +52,12 @@ function AnimeDetails() {
                 // alt={movie.title}
                 className="w-full max-w-sm rounded-lg shadow-2xl"
               />
-              
+
 
           </section>
 
 
-          <div className="">
+          <div className="bg-yellow-500">
             <div className="">
               <img
                 src={actor}
