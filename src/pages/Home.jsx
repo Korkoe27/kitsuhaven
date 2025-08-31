@@ -1,88 +1,85 @@
 import React, { useState, useEffect } from "react";
 import AnimeCard from '../components/AnimeCard'
+import axiosClient from "../services/axiosClient";
 
 // Sample anime data for the carousel
-const carouselData = [
-  {
-    id: 1,
-    title: "Gachiakuta",
-    year: "2025",
-    duration: "24m",
-    rating: "HD",
-    score: "8.7",
-    spotlight: "#7 Spotlight",
-    description: "Living in the slums of a wealthy town, Rudo and his foster father Regto try to coexist with the rest of the town's residents, but Rudo despises the wastefulness of the upper class. Ignoring the warnings from those around him, Rudo regularly rummages through the town's garbage in search of anything useful or...",
-    image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop",
-    gradient: "from-purple-900/90 via-blue-900/70 to-transparent"
-  },
-  {
-    id: 2,
-    title: "Demon Slayer",
-    year: "2023",
-    duration: "22m",
-    rating: "PG-13",
-    score: "9.1",
-    spotlight: "#1 Trending",
-    description: "A young boy becomes a demon slayer to avenge his family and cure his sister who has been turned into a demon. Follow Tanjiro's journey through breathtaking battles and emotional storytelling.",
-    image: "https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=1920&h=1080&fit=crop",
-    gradient: "from-red-900/90 via-orange-900/70 to-transparent"
-  },
-  {
-    id: 3,
-    title: "Jujutsu Kaisen",
-    year: "2024",
-    duration: "24m",
-    rating: "TV-MA",
-    score: "8.9",
-    spotlight: "#3 Popular",
-    description: "High school student Yuji Itadori swallows a cursed object and becomes host to a powerful curse. Now he must learn to control this power while attending a school for jujutsu sorcerers.",
-    image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=1920&h=1080&fit=crop",
-    gradient: "from-indigo-900/90 via-purple-900/70 to-transparent"
-  },
-  {
-    id: 4,
-    title: "Attack on Titan",
-    year: "2024",
-    duration: "25m",
-    rating: "TV-MA",
-    score: "9.3",
-    spotlight: "#2 Top Rated",
-    description: "Humanity fights for survival against giant humanoid creatures called Titans. Join Eren and his friends as they uncover the mysteries behind the walls that protect their city.",
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop",
-    gradient: "from-gray-900/90 via-slate-900/70 to-transparent"
-  }
-];
 
-// // AnimeCard component for the grid
-// const AnimeCard = ({ title = "Sample Anime", image, score = "8.5" }) => (
-//   <div className="group cursor-pointer">
-//     <div className="relative overflow-hidden rounded-lg aspect-[3/4] bg-gray-800">
-//       <img 
-//         src={image || "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop"} 
-//         alt={title}
-//         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-//       />
-//       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-//       <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-//         <div className="flex items-center justify-between mb-2">
-//           <span className="text-yellow-400 text-sm">★ {score}</span>
-//           {/* <Play className="w-8 h-8 text-white opacity-80" /> */}
-//             Trailer
-//         </div>
-//         <h3 className="text-white font-semibold">{title}</h3>
-//       </div>
-//     </div>
-//   </div>
-// );
+
+
+// const carouselData = [
+//   {
+//     id: 1,
+//     title: "Gachiakuta",
+//     year: "2025",
+//     duration: "24m",
+//     rating: "HD",
+//     score: "8.7",
+//     spotlight: "#7 Spotlight",
+//     description: "Living in the slums of a wealthy town, Rudo and his foster father Regto try to coexist with the rest of the town's residents, but Rudo despises the wastefulness of the upper class. Ignoring the warnings from those around him, Rudo regularly rummages through the town's garbage in search of anything useful or...",
+//     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop",
+//     gradient: "from-purple-900/90 via-blue-900/70 to-transparent"
+//   },
+//   {
+//     id: 2,
+//     title: "Demon Slayer",
+//     year: "2023",
+//     duration: "22m",
+//     rating: "PG-13",
+//     score: "9.1",
+//     spotlight: "#1 Trending",
+//     description: "A young boy becomes a demon slayer to avenge his family and cure his sister who has been turned into a demon. Follow Tanjiro's journey through breathtaking battles and emotional storytelling.",
+//     image: "https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=1920&h=1080&fit=crop",
+//     gradient: "from-red-900/90 via-orange-900/70 to-transparent"
+//   },
+//   {
+//     id: 3,
+//     title: "Jujutsu Kaisen",
+//     year: "2024",
+//     duration: "24m",
+//     rating: "TV-MA",
+//     score: "8.9",
+//     spotlight: "#3 Popular",
+//     description: "High school student Yuji Itadori swallows a cursed object and becomes host to a powerful curse. Now he must learn to control this power while attending a school for jujutsu sorcerers.",
+//     image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=1920&h=1080&fit=crop",
+//     gradient: "from-indigo-900/90 via-purple-900/70 to-transparent"
+//   },
+//   {
+//     id: 4,
+//     title: "Attack on Titan",
+//     year: "2024",
+//     duration: "25m",
+//     rating: "TV-MA",
+//     score: "9.3",
+//     spotlight: "#2 Top Rated",
+//     description: "Humanity fights for survival against giant humanoid creatures called Titans. Join Eren and his friends as they uncover the mysteries behind the walls that protect their city.",
+//     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop",
+//     gradient: "from-gray-900/90 via-slate-900/70 to-transparent"
+//   }
+// ];
+
 
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [carouselData ,setCarouselData] = useState([]);
 
+
+  useEffect(()=>{
+    axiosClient.get('/anime')
+      .then((data)=>{
+        // console.log(JSON.stringify(data,null,3))
+        setCarouselData(data.data)
+      })
+      .catch((error)=>{
+        console.error("Error fetching anime",error)
+      })
+  },[]);
+
+  // console.log(carouselData)
   // Auto-slide functionality
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselData.length);
     }, 5000); // Change slide every 5 seconds
@@ -106,6 +103,10 @@ function Home() {
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
   const currentAnime = carouselData[currentSlide];
+  if(!currentAnime){
+    return <div>Loading...</div>
+  }
+  console.log(JSON.stringify(currentAnime,null,3));
 
   return (
     <div className="flex-col bg-gray-900 flex h-full w-full">
@@ -119,13 +120,13 @@ function Home() {
         <div className="absolute inset-0">
           {carouselData.map((anime, index) => (
             <div
-              key={anime.id}
+              key={anime.mal_id}
               className={`absolute inset-0 transition-opacity duration-1000 ${
                 index === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}
             >
               <img 
-                src={anime.image} 
+                src={anime.images.webp.large_image_url} 
                 alt={anime.title}
                 className="h-full w-full object-cover"
               />
@@ -142,7 +143,8 @@ function Home() {
               {/* Spotlight Badge */}
               <div className="flex items-center space-x-2 mb-4">
                 <span className="bg-purple-600 text-white text-xs px-3 py-1 rounded-full font-medium">
-                  {currentAnime.spotlight}
+                  {/* {currentAnime.spotlight} */}
+                  #1
                 </span>
               </div>
 
@@ -226,7 +228,7 @@ function Home() {
       {/* Anime Grid */}
       <div className="bg-gray-900 py-12">
         <div className="container mx-auto px-4">
-          <h2 className="text-white text-2xl font-bold mb-8">Popular Anime</h2>
+          <h2 className="text-white text-2xl font-bold mb-8">Action</h2>
           <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 lg:gap-6 md:gap-4 gap-3">
             <AnimeCard />
           </div>
