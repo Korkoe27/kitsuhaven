@@ -5,59 +5,6 @@ import axiosClient from "../services/axiosClient";
 // Sample anime data for the carousel
 
 
-
-// const carouselData = [
-//   {
-//     id: 1,
-//     title: "Gachiakuta",
-//     year: "2025",
-//     duration: "24m",
-//     rating: "HD",
-//     score: "8.7",
-//     spotlight: "#7 Spotlight",
-//     description: "Living in the slums of a wealthy town, Rudo and his foster father Regto try to coexist with the rest of the town's residents, but Rudo despises the wastefulness of the upper class. Ignoring the warnings from those around him, Rudo regularly rummages through the town's garbage in search of anything useful or...",
-//     image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&h=1080&fit=crop",
-//     gradient: "from-purple-900/90 via-blue-900/70 to-transparent"
-//   },
-//   {
-//     id: 2,
-//     title: "Demon Slayer",
-//     year: "2023",
-//     duration: "22m",
-//     rating: "PG-13",
-//     score: "9.1",
-//     spotlight: "#1 Trending",
-//     description: "A young boy becomes a demon slayer to avenge his family and cure his sister who has been turned into a demon. Follow Tanjiro's journey through breathtaking battles and emotional storytelling.",
-//     image: "https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=1920&h=1080&fit=crop",
-//     gradient: "from-red-900/90 via-orange-900/70 to-transparent"
-//   },
-//   {
-//     id: 3,
-//     title: "Jujutsu Kaisen",
-//     year: "2024",
-//     duration: "24m",
-//     rating: "TV-MA",
-//     score: "8.9",
-//     spotlight: "#3 Popular",
-//     description: "High school student Yuji Itadori swallows a cursed object and becomes host to a powerful curse. Now he must learn to control this power while attending a school for jujutsu sorcerers.",
-//     image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=1920&h=1080&fit=crop",
-//     gradient: "from-indigo-900/90 via-purple-900/70 to-transparent"
-//   },
-//   {
-//     id: 4,
-//     title: "Attack on Titan",
-//     year: "2024",
-//     duration: "25m",
-//     rating: "TV-MA",
-//     score: "9.3",
-//     spotlight: "#2 Top Rated",
-//     description: "Humanity fights for survival against giant humanoid creatures called Titans. Join Eren and his friends as they uncover the mysteries behind the walls that protect their city.",
-//     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop",
-//     gradient: "from-gray-900/90 via-slate-900/70 to-transparent"
-//   }
-// ];
-
-
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
