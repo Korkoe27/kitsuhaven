@@ -1,26 +1,39 @@
 import React, { useState, useEffect } from "react";
-import AnimeCard from '../components/AnimeCard'
+import AnimeCard from "../components/AnimeCard";
 import axiosClient from "../services/axiosClient";
 
 // Sample anime data for the carousel
 
-
 function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [carouselData ,setCarouselData] = useState([]);
+  const [carouselData, setCarouselData] = useState([]);
+  const [actionData, setActionData] = useState([]);
 
-
-  useEffect(()=>{
-    axiosClient.get('/anime')
-      .then((data)=>{
+  useEffect(() => {
+    axiosClient
+      .get("/anime")
+      .then((data) => {
         // console.log(JSON.stringify(data,null,3))
-        setCarouselData(data.data)
+        setCarouselData(data.data);
       })
-      .catch((error)=>{
-        console.error("Error fetching anime",error)
+      .catch((error) => {
+        console.error("Error fetching anime", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axiosClient
+      .get("/anime?genres=1")
+
+      .then((data) => {
+        console.log(JSON.stringify(data, null, 3));
+        setActionData(data.data);
       })
-  },[]);
+      .catch((error) => {
+        console.error("Error fetching anime", error);
+      });
+  }, []);
 
   // console.log(carouselData)
   // Auto-slide functionality
@@ -39,7 +52,9 @@ function Home() {
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselData.length) % carouselData.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + carouselData.length) % carouselData.length
+    );
   };
 
   const goToSlide = (index) => {
@@ -50,15 +65,15 @@ function Home() {
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
   const currentAnime = carouselData[currentSlide];
-  if(!currentAnime){
-    return <div>Loading...</div>
+  if (!currentAnime) {
+    return <div>Loading...</div>;
   }
-  console.log(JSON.stringify(currentAnime,null,3));
+  console.log(JSON.stringify(currentAnime, null, 3));
 
   return (
     <div className="flex-col bg-gray-900 flex h-full w-full">
       {/* Carousel */}
-      <div 
+      <div
         className="h-screen w-full relative overflow-hidden"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -69,15 +84,17 @@ function Home() {
             <div
               key={anime.mal_id}
               className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
+                index === currentSlide ? "opacity-100" : "opacity-0"
               }`}
             >
-              <img 
-                src={anime.images.webp.large_image_url} 
+              <img
+                src={anime.images.webp.large_image_url}
                 alt={anime.title}
                 className="h-full w-full object-cover"
               />
-              <div className={`absolute inset-0 bg-gradient-to-r ${anime.gradient}`} />
+              <div
+                className={`absolute inset-0 bg-gradient-to-r ${anime.gradient}`}
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
             </div>
           ))}
@@ -124,7 +141,7 @@ function Home() {
                   {/* <Play className="w-5 h-5" /> */}
                   <span>Watch Now</span>
                 </button>
-                
+
                 <button className="flex items-center space-x-2 bg-gray-800/80 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-all duration-200 backdrop-blur-sm border border-gray-600/50 hover:border-gray-500">
                   {/* <Info className="w-5 h-5" /> */}
                   <span>Details</span>
@@ -142,7 +159,7 @@ function Home() {
           {/* <ChevronLeft className="w-6 h-6" /> */}
           Prev
         </button>
-        
+
         <button
           onClick={nextSlide}
           className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all duration-200 backdrop-blur-sm z-20"
@@ -158,9 +175,9 @@ function Home() {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'bg-purple-500 w-8' 
-                  : 'bg-white/50 hover:bg-white/70'
+                index === currentSlide
+                  ? "bg-purple-500 w-8"
+                  : "bg-white/50 hover:bg-white/70"
               }`}
             />
           ))}
@@ -168,7 +185,11 @@ function Home() {
 
         {/* Auto-play indicator */}
         <div className="absolute top-4 right-4 z-20">
-          <div className={`w-2 h-2 rounded-full ${isAutoPlaying ? 'bg-green-400' : 'bg-gray-400'} animate-pulse`} />
+          <div
+            className={`w-2 h-2 rounded-full ${
+              isAutoPlaying ? "bg-green-400" : "bg-gray-400"
+            } animate-pulse`}
+          />
         </div>
       </div>
 
@@ -177,7 +198,17 @@ function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-white text-2xl font-bold mb-8">Action</h2>
           <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 lg:gap-6 md:gap-4 gap-3">
-            <AnimeCard />
+            {actionData.map((movie) => (
+              <AnimeCard
+                key={movie.mal_id} 
+                title={movie.title}
+                year={movie.year}
+                runtime={movie.duration}
+                rating={movie.score}
+                type={movie.type}
+                image={movie.images.webp.large_image_url}
+                />
+            ))}
           </div>
         </div>
       </div>
